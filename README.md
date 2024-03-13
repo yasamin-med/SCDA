@@ -1,4 +1,5 @@
-# Project Name
+# MEDDAP: Medical Dataset Enhancement via
+Diversified Augmentation Pipeline
 
 Short description or introduction of your project goes here.
 
