@@ -2,7 +2,7 @@
 <div align="center">
 <h1> MEDDAP: Medical Dataset Enhancement via Diversified Augmentation Pipeline </h1>
 <h3>
-
+Yasamin Medghalchi, Niloufar Zakariaei, Arman Rahmim, and Ilker Hacihaliloglu </h3>
 
 ![plot](y.png)
 
