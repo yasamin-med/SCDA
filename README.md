@@ -1,5 +1,7 @@
 # MEDDAP: Medical Dataset Enhancement via Diversified Augmentation Pipeline
 
+
+
 ![plot](y.png)
 
 The effectiveness of Deep Neural Networks (DNNs) heavily relies on the abundance and accuracy of available training data. However, collecting and annotating data on a large scale is often both costly and time-intensive, particularly in medical cases where practitioners are already occupied with their duties. Moreover, ensuring that the model remains robust across various scenarios of image capture is crucial in medical domains, especially when dealing with ultrasound images that vary based on the settings of different devices and the manual operation of the transducer.
