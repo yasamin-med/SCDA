@@ -1,5 +1,7 @@
-# MEDDAP: Medical Dataset Enhancement via Diversified Augmentation Pipeline
-
+# 
+<div align="center">
+<h1> MEDDAP: Medical Dataset Enhancement via Diversified Augmentation Pipeline </h1>
+<h3>
 
 
 ![plot](y.png)
