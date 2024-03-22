@@ -1,5 +1,5 @@
 # 
-<div align="center">
+
 <h1> MEDDAP: Medical Dataset Enhancement via Diversified Augmentation Pipeline </h1>
 <h3>
 Yasamin Medghalchi, Niloufar Zakariaei, Arman Rahmim, and Ilker Hacihaliloglu </h3>
@@ -25,8 +25,8 @@ pip install .
 cd examples/text_to_image
 pip install -r requirements.txt
 ```
-'''bash
+```bash
 accelerate config -----> set the config based on your device
-'''
+```
 create account on hugging face and copy the access token for writing
 
