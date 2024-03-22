@@ -35,5 +35,13 @@ huggingface-cli login
 ```
 ## Prepairing Dataset
 Make Dataset in Hugging face webpage in your account with your preferred name
+Run the below code in terminal
+```bash
+python make_datasets.py --train_dir <path_to_train_directory>\
+ --classes 'benign','malignant','normal'\
+ --prompt_structure "an ultrasound photo of {class_name} tumor in breast"\
+ --dataset_path <path_to_dataset_hugging_face>\
+ --token <writing_token_hugging_face>
+```
 
 
