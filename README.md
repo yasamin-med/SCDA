@@ -29,4 +29,6 @@ pip install -r requirements.txt
 accelerate config -----> set the config based on your device
 ```
 create account on hugging face and copy the access token for writing
+```
+pip install --upgrade huggingface_hub```
 
