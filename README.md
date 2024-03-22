@@ -28,10 +28,12 @@ pip install -r requirements.txt
 ```bash
 accelerate config -----> set the config based on your device
 ```
-create account on hugging face and copy the access token for writing
+create account on hugging face and copy the access token for writing mode and paste the token when it is asked
 ```bash
 pip install --upgrade huggingface_hub
+huggingface-cli login 
 ```
 ## Prepairing Dataset
+Make Dataset in Hugging face webpage in your account with your preferred name
 
 
