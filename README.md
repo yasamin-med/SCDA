@@ -12,13 +12,21 @@ To address this challenge, we introduce a novel pipeline called MEDDAP, which le
 
 To enhance dataset diversity, we incorporate different adjectives into the generation process prompts, thereby desensitizing the classifiers to intensity changes across different images. This approach is inspired by clinicians' decision-making processes regarding breast tumors, where tumor shape often plays a more crucial role than intensity. In conclusion, our pipeline not only outperforms classifiers trained on the original dataset but also demonstrates superior performance when encountering unseen datasets.
 
-## 2. Method Pipeline
+## Method Pipeline
 Please refer to the [paper]() for more technical details.
 
-### Required libraries
+## Requirements
 
 * Install necessary python libraries:
 ```bash
 git clone https://github.com/huggingface/diffusers
+cd diffusers
+pip install .
+cd examples/text_to_image
+pip install -r requirements.txt
 ```
+'''bash
+accelerate config -----> set the config based on your device
+'''
+create account on hugging face and copy the access token for writing
 
