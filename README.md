@@ -18,4 +18,5 @@ Please refer to the [paper]() for more technical details.
 ### Required libraries
 
 * Install necessary python libraries:
-git clone https://github.com/huggingface/diffusers
+'''
+git clone https://github.com/huggingface/diffusers '''
