@@ -12,6 +12,9 @@ To address this challenge, we introduce a novel pipeline called MEDDAP, which le
 
 To enhance dataset diversity, we incorporate different adjectives into the generation process prompts, thereby desensitizing the classifiers to intensity changes across different images. This approach is inspired by clinicians' decision-making processes regarding breast tumors, where tumor shape often plays a more crucial role than intensity. In conclusion, our pipeline not only outperforms classifiers trained on the original dataset but also demonstrates superior performance when encountering unseen datasets.
 
+## 2. Method Pipeline
+Please refer to the [paper]() for more technical details.
+
 ## Table of Contents
 - [Project Name](#project-name)
   - [Table of Contents](#table-of-contents)
