@@ -44,7 +44,7 @@ python make_datasets.py --train_dir <path_to_train_directory>\
  --token <writing_token_hugging_face>
 ```
 ## Fine-tuning with USLoRA
-``bash
+```bash
 export MODEL_NAME="CompVis/stable-diffusion-v1-4"
 #"/home/yasamin/Documents/Dreambooth-Stable-Diffusion/sd-v1-4-full-ema.ckpt"
 export DATASET_NAME="yasimed/split_dataset"
@@ -58,6 +58,6 @@ accelerate launch --mixed_precision="fp16" train_text_to_image_lora.py \
   --seed=42 \
   --output_dir="/home/yasamin/Documents/finetune-sd/Breast/original_lora_44" \
   --validation_prompt="an ultrasound photo of benign tumor in breast" --report_to="wandb" --rank 4
-``
+```
 
 
