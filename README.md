@@ -61,6 +61,14 @@ accelerate launch --mixed_precision="fp16" train_text_to_image_lora.py \
 ```
 ## Make New Expanded Datasets
 In this section, we aim to generate new datasets with different adjectives and expansion ratios.
+
 ```bash
+python Inference_percent_breast.py --model_path <path_of_checkpoints>\
+  --adjective_list "","colorful","stylized","high-contrast","low-contrast","posterized","solarized","sheared","bright","dark" \
+  --modes "benign","malignant","normal"\
+  --percent_list 1.0\
+  --existing_images_base_directory <path_of_existing_original_dataset_local>\
+  --save_dir <path_of_expanded_dataset>\
+  --copy_flag 0
 ```
 
