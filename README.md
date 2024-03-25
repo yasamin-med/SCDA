@@ -59,5 +59,8 @@ accelerate launch --mixed_precision="fp16" train_text_to_image_lora.py \
   --output_dir=<path_of_checkpoints> \
   --validation_prompt="an ultrasound photo of benign tumor in breast" --report_to="wandb" --rank 4
 ```
-
+## Make New Expanded Datasets
+In this section, we aim to generate new datasets with different adjectives and expansion ratios.
+```bash
+```
 
