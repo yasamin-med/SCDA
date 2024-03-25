@@ -422,7 +422,6 @@ def evaluate(net, model_name , adj):
         
         print(f"Class {i} - Sensitivity: {sensitivity_i:.4f}, Specificity: {specificity_i:.4f} , precision: {precision_i:.4f}")
         f.write(f"Class {i} - Sensitivity: {sensitivity_i:.4f}, Specificity: {specificity_i:.4f}, precision: {precision_i:.4f}\n")
-    #F1_avg = (precision_avg * sensitivity_avg) / (precision_avg + sensitivity_avg)
     f.write(f"sensitivity_avg = {sensitivity_avg:.4f} , specifity_avg = {specifity_avg:.4f}, precision_avg = {precision_avg:.4f}, F1 = {f1: .4f}\n")
     print(f"sensitivity_avg = {sensitivity_avg:.4f} , specifity_avg = {specifity_avg:.4f}, precision_avg = {precision_avg:.4f}, F1 = {f1: .4f}")
     f.close()
@@ -441,8 +440,7 @@ def evaluate(net, model_name , adj):
              'vgg11', 'vgg19', 'vggbn',
              'densenet121', 'densenet169', 'densenet201',
              'resnet18', 'resnet34', 'resnet50', 'resnet101', 'resnet152',
-             'resnext50', 'resnext101', 'resnext101_64','vit_b_16', 'vit_b_32','vit_l_16' , 'vit_l_32','convnext_base',]'''
-# ['densenet121', 'resnet34','convnext_base']             
+             'resnext50', 'resnext101', 'resnext101_64','vit_b_16', 'vit_b_32','vit_l_16' , 'vit_l_32','convnext_base',]'''            
 baselines = args.baselines
 if args.adjective_flag == 1:
     table_data = [['model name' ,'adj' , 'accuracy' , 'sensitivity' , 'specifity' , 'precision' , 'F1']]
@@ -456,14 +454,13 @@ if args.adjective_flag == 1:
         precision_list = []
         F1_list = []
         for adj in args.adjective_list:
-            precision_avg , sensitivity_avg , specifity_avg , test_accuracy = evaluate(net , model_name, adj)
-            F1_avg = (precision_avg * sensitivity_avg) / (precision_avg + sensitivity_avg)
+            precision_avg , sensitivity_avg , specifity_avg , test_accuracy , f1 = evaluate(net , model_name, adj)
             model_accuracies.append(test_accuracy)
             sensitivity_list.append(sensitivity_avg)
             specifity_list.append(specifity_avg)
             precision_list.append(precision_avg)
-            F1_list.append(F1_avg)
-            table_data.append([model_name , adj , test_accuracy , sensitivity_avg , specifity_avg , precision_avg , F1_avg ])
+            F1_list.append(f1)
+            table_data.append([model_name , adj , test_accuracy , sensitivity_avg , specifity_avg , precision_avg , f1 ])
 
     # Specify the CSV file name
     csv_file_name = os.path.join( args.output_path , args.output_file_name + '_table.csv')
@@ -480,9 +477,8 @@ else:
         model_name = model
         net = get_net(model)
 
-        precision_avg , sensitivity_avg , specifity_avg , test_accuracy = evaluate(net , model_name , "")
-        F1_avg = (precision_avg * sensitivity_avg) / (precision_avg + sensitivity_avg)
-        table_data.append([model_name , '' , test_accuracy , sensitivity_avg , specifity_avg , precision_avg , F1_avg ])
+        precision_avg , sensitivity_avg , specifity_avg , test_accuracy , f1 = evaluate(net , model_name , "")
+        table_data.append([model_name , '' , test_accuracy , sensitivity_avg , specifity_avg , precision_avg , f1 ])
 
     # Specify the CSV file name
     csv_file_name = os.path.join( args.output_path , args.output_file_name + '_table.csv')
@@ -492,5 +488,4 @@ else:
         csv_writer = csv.writer(csvfile)
         csv_writer.writerows(table_data)
 
-    print(f'Table has been written to {csv_file_name}')  
-
+    print(f'Table has been written to {csv_file_name}') 
