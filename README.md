@@ -71,4 +71,5 @@ python Inference_percent_breast.py --model_path <path_of_checkpoints>\
   --save_dir <path_of_expanded_dataset>\
   --copy_flag 0
 ```
+put the name of classes of your dataset in "mode" and the expansion ration in "percent_list". Remmember to not put any space between inputs seperating with cammas.
 
