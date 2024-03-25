@@ -15,7 +15,7 @@ from torchvision.datasets import ImageFolder
 import torch.nn as nn
 import torch.optim as optim
 import copy
-from sklearn.metrics import confusion_matrix
+from sklearn.metrics import confusion_matrix , f1_score
 import csv
 
 def list_of_strings(arg):
@@ -370,45 +370,39 @@ def evaluate(net, model_name , adj):
     test_dataset = ImageFolder(test_path, transform=transform)
     test_loader = DataLoader(test_dataset, batch_size=args.batch_size)
     net_best = net
-    net_best.load_state_dict(torch.load(os.path.join( args.output_path ,adj, model_name , model_name + ".pth" )))
+    net_best.load_state_dict(torch.load(os.path.join( args.output_path ,adj, model_name , model_name + ".pth" ) ))
     net_best.eval()
     correct = 0
     total = 0
-
+    confusion_matrix = torch.zeros(args.num_class, args.num_class)
+    label_list = []
+    predicted_list = []
     with torch.no_grad():
         for inputs, labels in test_loader:
             inputs, labels = inputs.to(device), labels.to(device)
-            
             outputs = net_best(inputs)
             if model_name == "inceptionnet":
                 if isinstance(outputs, tuple):
-                    outputs = outputs[0]            
+                    outputs = outputs[0]
+            
             _, predicted = torch.max(outputs, 1)
+            predicted_list.extend(predicted.cpu().numpy())
+            label_list.extend(labels.cpu().numpy())
             total += labels.size(0)
             correct += (predicted == labels).sum().item()
-
+            for t, p in zip(labels.view(-1), predicted.view(-1)):
+                confusion_matrix[t.long(), p.long()] += 1
+                
     test_accuracy = 100 * correct / total
     print(f"Test Accuracy: {test_accuracy}%")
     f.write(f"Test Accuracy: {test_accuracy}%\n")
-    
+    f1 = f1_score(label_list, predicted_list, average='macro')
+    print(f"F1 score: {f1}%")
+    f.write(f"F1 score: {f1}%\n")
 
-    net_best.eval()
-    confusion_matrix = torch.zeros(args.num_class, args.num_class)
-
-    with torch.no_grad():
-        for inputs, labels in test_loader:
-            inputs, labels = inputs.to(device), labels.to(device)
-            
-            outputs = net_best(inputs)
-            if model_name == "inceptionnet":
-                if isinstance(outputs, tuple):
-                    outputs = outputs[0]            
-            _, predicted = torch.max(outputs, 1)
-            
-            for t, p in zip(labels.view(-1), predicted.view(-1)):
-                confusion_matrix[t.long(), p.long()] += 1
 
     # Calculate specificity and sensitivity for each class
+    
     sensitivity_avg = 0.0
     specifity_avg = 0.0
     precision_avg = 0.0
@@ -428,11 +422,11 @@ def evaluate(net, model_name , adj):
         
         print(f"Class {i} - Sensitivity: {sensitivity_i:.4f}, Specificity: {specificity_i:.4f} , precision: {precision_i:.4f}")
         f.write(f"Class {i} - Sensitivity: {sensitivity_i:.4f}, Specificity: {specificity_i:.4f}, precision: {precision_i:.4f}\n")
-    F1_avg = (precision_avg * sensitivity_avg) / (precision_avg + sensitivity_avg)
-    f.write(f"sensitivity_avg = {sensitivity_avg:.4f} , specifity_avg = {specifity_avg:.4f}, precision_avg = {precision_avg:.4f}, F1_avg = {F1_avg: .4f}\n")
-    print(f"sensitivity_avg = {sensitivity_avg:.4f} , specifity_avg = {specifity_avg:.4f}, precision_avg = {precision_avg:.4f}, F1_avg = {F1_avg: .4f}")
+    #F1_avg = (precision_avg * sensitivity_avg) / (precision_avg + sensitivity_avg)
+    f.write(f"sensitivity_avg = {sensitivity_avg:.4f} , specifity_avg = {specifity_avg:.4f}, precision_avg = {precision_avg:.4f}, F1 = {f1: .4f}\n")
+    print(f"sensitivity_avg = {sensitivity_avg:.4f} , specifity_avg = {specifity_avg:.4f}, precision_avg = {precision_avg:.4f}, F1 = {f1: .4f}")
     f.close()
-    return precision_avg , sensitivity_avg , specifity_avg , test_accuracy
+    return precision_avg , sensitivity_avg , specifity_avg , test_accuracy, f1
 
 
 
