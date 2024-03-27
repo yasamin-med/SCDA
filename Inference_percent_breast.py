@@ -27,6 +27,7 @@ parser.add_argument('--save_dir', type=str,
                     default='Augmented', help='directory to save new datasets')
 parser.add_argument('--copy_flag', type=int,
                     default=1, help='copy base directory or not')
+parser.add_argument('--prompt_structure', type=str, default= "an ultrasound photo of {class_name} tumor in breast", help= "structure of prompt")
 args = parser.parse_args()
 print(args)
 
@@ -99,8 +100,14 @@ for percent in args.percent_list:
                 # Image generation logic
             
             for i in range(image_count):
+                if mode == "normal":
+                    basic_prompt = args.prompt_structure.replace("{class_name}" , "no")
+                else:
+                    
+                    basic_prompt = args.prompt_structure.replace("{class_name}" , mode)
 
-                prompt = f"{adjective} ultrasound photo of {mode} tumor in breast" if adjective else f"ultrasound photo of a {mode} tumor in breast"
+                #prompt = f"{adjective} ultrasound photo of {mode} tumor in breast" if adjective else f"ultrasound photo of a {mode} tumor in breast"
+                prompt = f"{adjective}" + basic_prompt if adjective else basic_prompt
                 image = pipe(prompt, num_inference_steps=30, guidance_scale=7.5).images[0]
                 name_save = os.path.join(epoch_save_dir, f"{i}_synth.png")
                 image.save(name_save)
