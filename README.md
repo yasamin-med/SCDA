@@ -43,7 +43,7 @@ python make_dataset_breast.py --train_dir <path_to_train_directory>\
  --dataset_path <path_to_dataset_hugging_face>\
  --token <writing_token_hugging_face>
 ```
-Remmember if you want to use this pipeline for different application, in the code, I change the structure of prompt for "normal' class. Instead of writing "an ultrasound photo of normal tumor in breast", I wrote "an ultrasound photo of no tumor in breast".
+Remmember if you want to use this pipeline for different application, in the code, I change the structure of prompt for "normal' class. Instead of writing "an ultrasound photo of normal tumor in breast", I wrote "an ultrasound photo of no tumor in breast". This happens in "Make New Expanded Datasets" section too.
 ## Fine-tuning with USLoRA
 you can chnge the hyperparameters based on your problem but remember that it works better with batch size equal to 1.
 ```bash
