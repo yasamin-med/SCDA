@@ -31,6 +31,8 @@ for class_name in args.classes:
     for root, dirs, files in os.walk(root_main):
         for name in files:
             path_image.append((os.path.join( root , name)))
+            if class_name == "normal":
+                prompt = args.prompt_structure.replace("{class_name}" , "no")
             prompt = args.prompt_structure.replace("{class_name}" , class_name)
             
             temp = Image((os.path.join( root , name)))
