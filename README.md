@@ -37,7 +37,7 @@ huggingface-cli login
 Make Dataset in Hugging face webpage in your account with your preferred name
 Run the below code in terminal
 ```bash
-python make_datasets.py --train_dir <path_to_train_directory>\
+python make_dataset_breast.py --train_dir <path_to_train_directory>\
  --classes 'benign','malignant','normal'\
  --prompt_structure "an ultrasound photo of {class_name} tumor in breast"\
  --dataset_path <path_to_dataset_hugging_face>\
