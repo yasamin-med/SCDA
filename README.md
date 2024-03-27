@@ -67,6 +67,7 @@ python Inference_percent_breast.py --model_path <path_of_checkpoints>\
   --adjective_list "","colorful","stylized","high-contrast","low-contrast","posterized","solarized","sheared","bright","dark" \
   --modes "benign","malignant","normal"\
   --percent_list 0.5,1.0,2.0\
+  --prompt_structure "an ultrasound photo of {class_name} tumor in breast"\
   --existing_images_base_directory <path_of_existing_original_dataset_local>\
   --save_dir <path_of_expanded_dataset>\
   --copy_flag 0
