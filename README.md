@@ -75,3 +75,21 @@ python Inference_percent_breast.py --model_path <path_of_checkpoints>\
 ```
 put the name of classes of your dataset in "mode" and the expansion ration in "percent_list". Remmember to not put any space between inputs seperating with cammas. "copy_flag" equal to 1 means if you want to copy the original images in new dataset as well, otherwise your new dataset contains just synthetic images.
 
+## Training and evaluation for downstream task, classification
+In this section, we aim to train classifiers for both original and mixed (original + synthetic) ones. we used  
+'densenet121','resnet34','squeezenet1.1' as classifiers but we wrote a code for other classifiers in the code, you can choose them for your project but pay attention to change their last layer to work best with your problem.
+```bash
+python evaluate_new.py --data_path <dir_of_dataset_local>\
+ --data_test_path <path_of_test_dataset>\
+ --data_valid_path <path_of_validation_set>\
+ --output_path <dir_of_output>\
+ --adjective_list "bright","colorful","dark","high-contrast","low-contrast","no_adjective","posterized","sheared","solarized","stylized" \
+ --baselines 'densenet121','resnet34','squeezenet1.1'\
+ --adjective_flag 0\
+ --batch_size 32\
+ --num_class 3\
+ --num_epochs 100\
+ --train 0\
+ --output_file_name <name_of_result_text_and_table>\
+ --size 224
+```
