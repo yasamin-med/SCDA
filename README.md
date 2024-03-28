@@ -93,3 +93,14 @@ python evaluate_new.py --data_path <dir_of_dataset_local>\
  --output_file_name <name_of_result_text_and_table>\
  --size 224
 ```
+### Citation
+```
+@misc{medghalchi2024meddap,
+      title={MEDDAP: Medical Dataset Enhancement via Diversified Augmentation Pipeline}, 
+      author={Yasamin Medghalchi and Niloufar Zakariaei and Arman Rahmim and Ilker Hacihaliloglu},
+      year={2024},
+      eprint={2403.16335},
+      archivePrefix={arXiv},
+      primaryClass={eess.IV}
+}
+```
