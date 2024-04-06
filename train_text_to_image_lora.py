@@ -540,7 +540,7 @@ def main():
             args.dataset_name,
             args.dataset_config_name,
             cache_dir=args.cache_dir,
-            data_dir=args.train_data_dir ,use_auth_token="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",
+            data_dir=args.train_data_dir,
         )
     else:
         data_files = {}
