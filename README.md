@@ -1,6 +1,6 @@
 
 
-<h1> Synthetic vs. Traditional Data Augmentation: Impacts on Breast Ultrasound Image Classification </h1>
+<h1> Synthetic vs. Classic Data Augmentation: Impacts on Breast Ultrasound Image Classification </h1>
 <h3>
 Yasamin Medghalchi, Niloufar Zakariaei, Arman Rahmim, and Ilker Hacihaliloglu </h3>
 
