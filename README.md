@@ -107,7 +107,7 @@ done
 ```
 ## Training and evaluation for downstream task, classification
 In this section, we aim to train classifiers for both original and mixed (original + synthetic) ones. we used  
-'densenet121','resnet34','squeezenet1.1' as classifiers but we wrote a code for other classifiers in the code, you can choose them for your project but pay attention to change their last layer to work best with your problem.
+'densenet121','resnet34','squeezenet1.1' as classifiers but we wrote a code for other classifiers in the code, you can choose them for your project but pay attention to change their last layer to work best with your problem. If you want to use it for other augmentation rather than SD, put "" for adjective_list and put 0 for adjective_flag. Moreover, you can put train to 0 if you just want to use the test procedure. 
 ```bash
 python evaluate_new.py --data_path <dir_of_dataset_local>\
  --data_test_path <path_of_test_dataset>\
@@ -115,7 +115,7 @@ python evaluate_new.py --data_path <dir_of_dataset_local>\
  --output_path <dir_of_output>\
  --adjective_list "bright","colorful","dark","high-contrast","low-contrast","no_adjective","posterized","sheared","solarized","stylized" \
  --baselines 'densenet121','resnet34','squeezenet1.1'\
- --adjective_flag 0\
+ --adjective_flag 1\
  --batch_size 32\
  --num_class 3\
  --num_epochs 100\
