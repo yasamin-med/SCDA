@@ -85,7 +85,26 @@ python Inference_percent_breast.py --model_path <path_of_checkpoints>\
   --copy_flag 0
 ```
 put the name of classes of your dataset in "mode" and the expansion ration in "percent_list". Remmember to not put any space between inputs seperating with cammas. "copy_flag" equal to 1 means if you want to copy the original images in new dataset as well, otherwise your new dataset contains just synthetic images.
+## Make New Expanded Datasets with DCGAN
+In this section, we aim to generate new datasets with DCGAN with different expansion ratios. "save_path" shows the path where the synthetic images are saved and dest_path is the same as we used in training DCGAN. "base_dir" is the path to the folder of each classes of original dataset.
 
+```bash
+class_name_list=("benign" "malignant" "normal")
+percentage=0.5
+
+# Loop over each class name
+for class_name in "${class_name_list[@]}"; do
+    # Define the save path and destination directory
+    save_path="DCGAN_{percentage}/${class_name}"
+
+    # Run the Python script with the appropriate arguments
+    python dcgan_inference.py \
+        --save_path "$save_path" \
+        --dest_path <path_to_model_weights> \
+        --base_dir <path_to_folder_each_class> \
+        --percentage $percentage
+done
+```
 ## Training and evaluation for downstream task, classification
 In this section, we aim to train classifiers for both original and mixed (original + synthetic) ones. we used  
 'densenet121','resnet34','squeezenet1.1' as classifiers but we wrote a code for other classifiers in the code, you can choose them for your project but pay attention to change their last layer to work best with your problem.
