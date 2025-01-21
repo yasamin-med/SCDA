@@ -61,6 +61,7 @@ accelerate launch --mixed_precision="fp16" train_text_to_image_lora.py \
   --validation_prompt="an ultrasound photo of benign tumor in breast" --report_to="wandb" --rank 4
 ```
 ## Training DCGAN
+![Alt text](figures/DCGAN.png)
 By running below script, you can train DCGAN for the dataset. Replace <path_to_folder_each_class> with the path of the folder consists of images of each class. <path_to_model_weights> is the path when your model is going to be saved. 
 ```bash
 class_name_list=("benign" "malignant" "normal")
