@@ -44,7 +44,7 @@ python make_dataset_breast.py --train_dir <path_to_train_directory>\
  --token <writing_token_hugging_face>
 ```
 Remmember if you want to use this pipeline for different application, in the code, I change the structure of prompt for "normal' class. Instead of writing "an ultrasound photo of normal tumor in breast", I wrote "an ultrasound photo of no tumor in breast". This happens in "Make New Expanded Datasets" section too.
-## Fine-tuning with USLoRA
+## Fine-tuning SD with LoRA
 you can chnge the hyperparameters based on your problem but remember that it works better with batch size equal to 1.
 ```bash
 export MODEL_NAME="CompVis/stable-diffusion-v1-4"
@@ -60,7 +60,18 @@ accelerate launch --mixed_precision="fp16" train_text_to_image_lora.py \
   --output_dir=<path_of_checkpoints> \
   --validation_prompt="an ultrasound photo of benign tumor in breast" --report_to="wandb" --rank 4
 ```
-## Make New Expanded Datasets
+## Training DCGAN
+By running below script, you can train DCGAN for the dataset. Replace <path_to_folder_each_class> with the path of the folder consists of images of each class. <path_to_model_weights> is the path when your model is going to be saved. 
+```bash
+class_name_list=("benign" "malignant" "normal")
+for class_name in "${class_name_list[@]}"; do
+    # Run the Python script with the appropriate arguments
+    python dcgan_pytorch.py \
+        --data_path <path_to_folder_each_class> \
+        --dest_path <path_to_model_weights>
+done
+```
+## Make New Expanded Datasets with SD
 In this section, we aim to generate new datasets with different adjectives and expansion ratios.
 
 ```bash
