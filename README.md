@@ -45,6 +45,7 @@ python make_dataset_breast.py --train_dir <path_to_train_directory>\
 ```
 Remmember if you want to use this pipeline for different application, in the code, I change the structure of prompt for "normal' class. Instead of writing "an ultrasound photo of normal tumor in breast", I wrote "an ultrasound photo of no tumor in breast". This happens in "Make New Expanded Datasets" section too.
 ## Fine-tuning SD with LoRA
+![Alt text](figures/SD.png)
 you can chnge the hyperparameters based on your problem but remember that it works better with batch size equal to 1.
 ```bash
 export MODEL_NAME="CompVis/stable-diffusion-v1-4"
