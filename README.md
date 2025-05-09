@@ -127,12 +127,11 @@ python evaluate_new.py --data_path <dir_of_dataset_local>\
 ```
 ### Citation
 ```
-@misc{medghalchi2024meddap,
-      title={MEDDAP: Medical Dataset Enhancement via Diversified Augmentation Pipeline}, 
-      author={Yasamin Medghalchi and Niloufar Zakariaei and Arman Rahmim and Ilker Hacihaliloglu},
-      year={2024},
-      eprint={2403.16335},
-      archivePrefix={arXiv},
-      primaryClass={eess.IV}
+@article{medghalchi2025synthetic,
+  title={Synthetic vs. Classic Data Augmentation: Impacts on Breast Ultrasound Image Classification},
+  author={Medghalchi, Yasamin and Zakariaei, Niloufar and Rahmim, Arman and Hacihaliloglu, Ilker},
+  journal={IEEE Transactions on Ultrasonics, Ferroelectrics, and Frequency Control},
+  year={2025},
+  publisher={IEEE}
 }
 ```
